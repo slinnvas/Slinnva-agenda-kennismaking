@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#251a13">
+    <title>Agenda Beheer | Slinnva Professionals</title>
+    <link rel="stylesheet" href="agenda.css">
+  </head>
+  <body>
+    <header class="agenda-header">
+      <a class="brand" href="agenda.html">
+        <span>SP</span>
+        <strong>Slinnva Agenda Beheer</strong>
+      </a>
+      <nav>
+        <a href="agenda.html">Klantagenda</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="admin-section" id="beheer">
+        <div class="section-head login-only" id="loginIntro">
+          <p class="eyebrow">Beheer</p>
+          <h1>Inloggen</h1>
+        </div>
+
+        <form class="panel login-panel" id="loginForm">
+          <h3>Inloggen</h3>
+          <label>Gebruikersnaam<input name="username" autocomplete="username" required></label>
+          <label>Wachtwoord<input name="password" type="password" autocomplete="current-password"></label>
+          <button class="button primary" type="submit">Inloggen</button>
+          <button class="button ghost" id="resetPassword" type="button">Wachtwoord resetten</button>
+          <p class="status" id="loginStatus"></p>
+        </form>
+
+        <div class="admin-dashboard" id="adminDashboard" hidden>
+          <section class="section-head admin-title">
+            <p class="eyebrow">Beheer</p>
+            <h1>Agenda beheren</h1>
+            <p>Wijzigingen worden geregistreerd op naam van de ingelogde medewerker.</p>
+          </section>
+
+          <section class="admin-welcome panel">
+            <div>
+              <p class="eyebrow">Ingelogd als</p>
+              <h3 id="currentAccount">Medewerker</h3>
+            </div>
+            <button class="button ghost" id="logoutButton" type="button">Uitloggen</button>
+            <p class="status full" id="adminStatus"></p>
+          </section>
+
+          <section class="panel">
+            <h3>Beschikbare tijden toevoegen of bewerken</h3>
+            <form id="availabilityForm" class="form-grid">
+              <input name="id" type="hidden">
+              <label>Start<input name="start" type="datetime-local" required></label>
+              <label>Einde<input name="end" type="datetime-local" required></label>
+              <label class="full">Notitie<input name="note" placeholder="Bijvoorbeeld: kennismaking, intake of videogesprekken"></label>
+              <button class="button primary" id="availabilitySubmit" type="submit">Beschikbaarheid toevoegen</button>
+              <button class="button ghost" id="availabilityCancel" type="button" hidden>Annuleren</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <h3>Beschikbare tijden</h3>
+            <div class="list" id="availabilityList"></div>
+          </section>
+
+          <section class="panel">
+            <h3>Onbeschikbaar zetten of bewerken</h3>
+            <form id="unavailableForm" class="form-grid">
+              <input name="id" type="hidden">
+              <label>Start<input name="start" type="datetime-local" required></label>
+              <label>Einde<input name="end" type="datetime-local" required></label>
+              <label class="full">Reden<input name="reason" placeholder="Bijvoorbeeld: afspraak, vakantie, reistijd"></label>
+              <button class="button primary" id="unavailableSubmit" type="submit">Blok toevoegen</button>
+              <button class="button ghost" id="unavailableCancel" type="button" hidden>Annuleren</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <h3>Afspraken</h3>
+            <form id="bookingEditForm" class="form-grid" hidden>
+              <input name="id" type="hidden">
+              <label>Naam<input name="name" required></label>
+              <label>Organisatie<input name="organization"></label>
+              <label>E-mailadres<input name="email" type="email" required></label>
+              <label>Telefoonnummer<input name="phone" type="tel"></label>
+              <label>Start<input name="start" type="datetime-local" required></label>
+              <label>Duur
+                <select name="duration" required>
+                  <option value="45">45 minuten</option>
+                  <option value="60">60 minuten</option>
+                </select>
+              </label>
+              <label>Vorm kennismaking
+                <select name="meetingType" required>
+                  <option>Videobellen</option>
+                  <option>Telefonisch</option>
+                  <option>Op locatie</option>
+                </select>
+              </label>
+              <label>Status<input name="status" required></label>
+              <label class="full">Opmerking<textarea name="note" rows="3"></textarea></label>
+              <button class="button primary" type="submit">Afspraak opslaan</button>
+              <button class="button ghost" id="bookingEditCancel" type="button">Annuleren</button>
+            </form>
+            <div class="list" id="bookingList"></div>
+          </section>
+
+          <section class="panel">
+            <h3>Onbeschikbare tijden</h3>
+            <div class="list" id="unavailableList"></div>
+          </section>
+
+          <section class="panel">
+            <h3>Account toevoegen of bewerken</h3>
+            <form id="accountForm" class="form-grid">
+              <input name="id" type="hidden">
+              <label>Gebruikersnaam<input name="username" required></label>
+              <label>E-mail<input name="email" type="email" required></label>
+              <label class="full">Wachtwoord<input name="password" type="password" placeholder="Alleen invullen bij nieuw account of wachtwoord wijzigen"></label>
+              <button class="button primary" id="accountSubmit" type="submit">Account aanmaken</button>
+              <button class="button ghost" id="accountCancel" type="button" hidden>Annuleren</button>
+            </form>
+            <div class="list" id="accountList"></div>
+          </section>
+
+          <section class="panel admin-log-panel">
+            <h3>Follow-up e-mailtemplates</h3>
+            <form id="followupForm" class="form-grid">
+              <input name="id" type="hidden">
+              <label>Templatenaam<input name="name" required placeholder="Bijvoorbeeld: bevestiging kennismaking"></label>
+              <label>Onderwerp<input name="subject" required placeholder="Onderwerp van de e-mail"></label>
+              <label class="full">Bericht<textarea name="body" rows="6" required placeholder="Schrijf hier alvast de tekst van de follow-up e-mail"></textarea></label>
+              <button class="button primary" id="followupSubmit" type="submit">Template opslaan</button>
+              <button class="button ghost" id="followupCancel" type="button" hidden>Annuleren</button>
+            </form>
+            <div class="list" id="followupList"></div>
+          </section>
+
+          <section class="panel admin-log-panel">
+            <h3>Wijzigingslog</h3>
+            <div class="list" id="auditList"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="agenda.js"></script>
+  </body>
+</html>
