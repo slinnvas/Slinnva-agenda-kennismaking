@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Samen Actief & Verbonden | Workshopplatform</title>
+    <link rel="stylesheet" href="styles.css?v=33">
+  </head>
+  <body>
+    <script>
+      (() => {
+        const mode = new URLSearchParams(location.search).get("mode");
+        if (mode === "screen" || mode === "participant") document.body.classList.add(`standalone-${mode}`);
+      })();
+    </script>
+    <div class="app">
+      <aside class="rail">
+        <button class="brand" data-view="dashboard" aria-label="Naar overzicht">
+          <span class="brand-monogram">SP</span>
+          <span><strong>Slinnva</strong><small>Professionals</small></span>
+        </button>
+
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
+          <button class="active" data-view="dashboard"><span>01</span>Overzicht</button>
+          <button data-view="trainer"><span>02</span>Trainer</button>
+          <button data-view="screen"><span>03</span>Presentatie</button>
+          <button data-view="participant"><span>04</span>Telefoon deelnemer</button>
+          <button data-view="library"><span>05</span>Bibliotheek</button>
+          <button data-view="admin"><span>06</span>Beheer</button>
+        </nav>
+
+        <div class="rail-bottom">
+          <div class="session-mini">
+            <i></i>
+            <span><strong>Demo lokaal</strong><small>Automatisch opgeslagen</small></span>
+          </div>
+          <button class="icon-button" id="resetDemo" title="Demo herstellen">↻</button>
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" aria-label="Menu openen">Menu</button>
+          <div class="crumb"><span>Samen Actief & Verbonden</span><b>/</b><strong id="crumbTitle">Workshopplatform</strong></div>
+          <div class="top-actions">
+            <span class="version-chip" id="versionChip">Sterk Online · v1.0</span>
+            <button class="avatar" title="Trainer Sharmilenka">SH</button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboardView">
+          <div class="dashboard-hero">
+            <div>
+              <p class="eyebrow">Samen leren. Samen sterker.</p>
+              <h1>Goedemiddag,<br>Sharmilenka.</h1>
+              <p class="lead">Kies het traject dat je wilt voorbereiden of geven. Een workshop opent pas nadat jij hem hebt gekozen.</p>
+              <div class="button-row">
+                <button class="button dark" id="viewWorkshopProgram">Bekijk alle workshops</button>
+              </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <div class="orbit orbit-one"></div>
+              <div class="orbit orbit-two"></div>
+              <div class="art-card card-back"><span>AI</span></div>
+              <div class="art-card card-front">
+                <div class="signal-dot"></div>
+                <small>WORKSHOPPLATFORM</small>
+                <strong>SAMEN<br>ACTIEF</strong>
+                <span>Vier actieve trajecten · één rustige werkwijze</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title">
+            <div><p class="eyebrow">Programma</p><h2>Workshops</h2></div>
+            <span id="workshopAvailability">4 actieve workshops</span>
+          </div>
+          <div class="workshop-grid" id="workshopGrid"></div>
+
+          <div class="dashboard-bottom">
+            <article class="next-session">
+              <div>
+                <p class="eyebrow">Volgende sessie</p>
+                <h3>Mic On · Week 1</h3>
+                <p id="sessionMeta">Vandaag · Demo-school · Jongerengroep</p>
+              </div>
+              <button class="circle-button" data-open-workshop data-workshop="mic-on" aria-label="Open Mic On">→</button>
+            </article>
+            <article class="tip-card">
+              <span class="quote">“</span>
+              <p>Het doel is niet om elkaar te beoordelen, maar om samen te ontdekken hoe de online wereld werkt.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="micOnView">
+          <div class="workspace-head mic-on-dashboard-head">
+            <div>
+              <button class="back-link" data-view="dashboard">← Alle workshops</button>
+              <p class="eyebrow">Overzicht traject</p>
+              <h1>Mic On</h1>
+              <p class="lead">Van gesprek naar podcast. Kies de editie en start daarna direct de juiste trainingsweek.</p>
+            </div>
+            <div class="mic-on-mark" aria-hidden="true"><i></i><strong>MIC<br>ON</strong><span>6 weken</span></div>
+          </div>
+          <div id="micOnDashboard"></div>
+        </section>
+
+        <section class="view" id="wegwijsView">
+          <div class="workspace-head wegwijs-overview-head">
+            <div>
+              <button class="back-link" data-view="dashboard">← Alle workshops</button>
+              <p class="eyebrow">Vier weken praktisch ontdekken</p>
+              <h1>Samen Wegwijs<br>in Nederland</h1>
+              <p class="lead">Een toegankelijk traject waarin deelnemers leren waar zij terechtkunnen, praktische situaties oefenen en sterker meedoen.</p>
+            </div>
+            <div class="wegwijs-symbols" aria-hidden="true"><span>G</span><span>D</span><span>€</span><span>+</span></div>
+          </div>
+          <div class="wegwijs-week-grid" id="wegwijsDashboard"></div>
+        </section>
+
+        <section class="view" id="talentView">
+          <div class="workspace-head talent-overview-head">
+            <div>
+              <button class="back-link" data-view="dashboard">← Alle workshops</button>
+              <p class="eyebrow">Vier weken ontdekken en bewegen</p>
+              <h1>Van Talent<br>naar Toekomst</h1>
+              <p class="lead">Een interactief traject waarin jongeren ontdekken wie zij zijn, wat bij hen past en welke eerste stap zij kunnen zetten.</p>
+            </div>
+            <div class="talent-symbols" aria-hidden="true"><span>IK</span><span>★</span><span>→</span><span>NU</span></div>
+          </div>
+          <div class="talent-week-grid" id="talentDashboard"></div>
+        </section>
+
+        <section class="view" id="trainerView">
+          <div class="workspace-head">
+            <div><p class="eyebrow">Trainersregie</p><h1 id="trainerWorkshopTitle">Sterk Online</h1><p class="lead" id="trainerWorkshopLead">45–60 minuten · Veilig, bewust en weerbaar online.</p></div>
+            <div class="button-row">
+              <button class="button light" id="sessionSettings">Sessie instellen</button>
+            </div>
+          </div>
+
+          <section class="presentation-link-card">
+            <div class="presentation-link-icon">▶</div>
+            <div class="presentation-link-copy">
+              <p class="eyebrow">Aparte presentatielink</p>
+              <h3>Open de slides voor deelnemers</h3>
+              <p>Deze link toont alleen de 16:9-presentatie. Spreektekst, notities en trainerknoppen blijven privé in dit venster.</p>
+              <div class="presentation-url-row">
+                <input id="presentationUrl" readonly aria-label="Presentatielink">
+                <button class="button light" id="copyPresentationUrl">Kopieer link</button>
+                <button class="button dark" id="presentCurrent">Open presentatie ↗</button>
+              </div>
+            </div>
+          </section>
+
+          <div class="trainer-layout">
+            <aside class="run-sheet">
+              <div class="run-sheet-head"><strong>Draaiboek</strong><span id="durationTotal">55 min</span></div>
+              <div id="moduleList"></div>
+              <button class="add-module" data-view="admin">+ Module beheren</button>
+            </aside>
+
+            <div class="trainer-stage">
+              <div class="stage-toolbar">
+                <span id="stageCounter">Onderdeel 1 van 8</span>
+                <div>
+                  <button class="icon-button" id="prevModule" aria-label="Vorige slide">←</button>
+                  <button class="icon-button" id="nextModule" aria-label="Volgende slide">→</button>
+                </div>
+              </div>
+              <div id="trainerModule"></div>
+              <div class="presenter-controls">
+                <div class="slide-control-copy">
+                  <span>Slides voor dit onderwerp</span>
+                  <small>Kies wat deelnemers op de beamer zien. Jouw spreektekst blijft privé.</small>
+                </div>
+                <div class="slide-selector" id="slideSelector"></div>
+                <button class="button dark" id="sendToScreen">Toon deze slide</button>
+              </div>
+            </div>
+
+            <aside class="live-panel">
+              <div class="live-head"><i></i><strong>Live sessie</strong></div>
+              <div class="metric"><strong id="participantCount">6</strong><span>deelnemers verbonden</span></div>
+              <div class="participant-stack" id="participantStack"></div>
+              <button class="button light full" id="showParticipants">Deelnemers bekijken</button>
+              <hr>
+              <p class="label">Snelle acties</p>
+              <button class="quick-action primary-action" id="startPoll"><span>▶</span>Start openingspoll</button>
+              <button class="quick-action" id="openPoll"><span>↗</span>Toon polluitslag</button>
+              <button class="quick-action primary-action" id="openBingo"><span>▶</span>Start bingo</button>
+              <button class="quick-action" id="openBingoStatements"><span>◇</span>Open 60 bingostellingen</button>
+              <button class="quick-action" id="resumeSlides"><span>▶</span>Terug naar presentatie</button>
+              <button class="quick-action" id="addNote"><span>＋</span>Notitie toevoegen</button>
+            </aside>
+          </div>
+        </section>
+
+        <section class="view screen-view" id="screenView">
+          <div class="screen-top">
+            <span class="screen-brand">SLINNVA PROFESSIONALS</span>
+            <span class="live-badge"><i></i> LIVE · <b id="screenParticipants">6</b> DEELNEMERS</span>
+          </div>
+          <div id="publicScreen"></div>
+          <div class="screen-footer">
+            <span>Samen Actief & Verbonden</span>
+            <div class="presentation-progress"><i id="presentationProgressBar"></i></div>
+            <div class="screen-local-controls">
+              <button id="screenPrev" aria-label="Vorige slide">←</button>
+              <span id="screenProgress">1 / 23</span>
+              <button id="screenNext" aria-label="Volgende slide">→</button>
+              <button id="screenFullscreen" aria-label="Volledig scherm">⛶</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="view participant-view" id="participantView">
+          <div class="phone-shell">
+            <div class="phone-status"><span>09:41</span><strong>● ● ●</strong></div>
+            <div id="participantApp"></div>
+          </div>
+          <aside class="participant-info">
+            <p class="eyebrow">Deelnemersmodus</p>
+            <h2 id="participantInfoTitle">Meedoen via je telefoon.</h2>
+            <p id="participantInfoText">Deze weergave laat zien wat deelnemers na het scannen van de QR-code ervaren. Antwoorden worden alleen als groepsresultaat getoond.</p>
+            <div class="privacy-note"><span>✓</span><p><strong>Veilig meedoen</strong><br>Geen account nodig. Naam en leeftijd blijven binnen de sessie.</p></div>
+          </aside>
+        </section>
+
+        <section class="view" id="libraryView">
+          <div class="workspace-head">
+            <div>
+              <p class="eyebrow">Materialenbank</p>
+              <h1>Bibliotheek</h1>
+              <p class="lead">Alle werkbladen, formulieren, oefenkaarten en printmaterialen op één vaste plek.</p>
+            </div>
+            <div class="library-summary"><strong id="libraryCount">0</strong><span>materialen beschikbaar</span></div>
+          </div>
+          <div class="library-toolbar">
+            <div class="library-search"><label for="librarySearch">Zoeken</label><input id="librarySearch" placeholder="Bijvoorbeeld: luisterwerkblad"></div>
+            <div class="library-filters" id="libraryFilters"></div>
+          </div>
+          <div class="library-grid" id="libraryGrid"></div>
+        </section>
+
+        <section class="view" id="adminView">
+          <div class="workspace-head">
+            <div><p class="eyebrow">Beheermodus</p><h1>Inhoud & versies</h1><p class="lead">Pas de workshop aan zonder programmeerkennis.</p></div>
+            <div class="button-row">
+              <button class="button light" id="exportMenu">Exporteren</button>
+              <button class="button dark" id="publishVersion">Versie publiceren</button>
+            </div>
+          </div>
+          <div class="admin-layout">
+            <aside class="admin-nav">
+              <button class="active" data-admin-tab="content">Workshopinhoud</button>
+              <button data-admin-tab="polls">Polls & casussen</button>
+              <button data-admin-tab="bingo">Bingo</button>
+              <button data-admin-tab="notes">Notities</button>
+              <button data-admin-tab="versions">Versiebeheer</button>
+              <button data-admin-tab="exports">Exports</button>
+            </aside>
+            <div class="admin-content" id="adminContent"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal" id="modal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="modal-close" id="modalClose" aria-label="Sluiten">×</button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <script src="qrcode-browser.js?v=1"></script>
+    <script src="app.js?v=33"></script>
+  </body>
+</html>

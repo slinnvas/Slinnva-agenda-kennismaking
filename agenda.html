@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#251a13">
+    <title>Kennismaking plannen | Slinnva Professionals</title>
+    <link rel="stylesheet" href="agenda.css">
+  </head>
+  <body>
+    <header class="agenda-header">
+      <a class="brand" href="workshopgids.html">
+        <span>SP</span>
+        <strong>Slinnva Professionals</strong>
+      </a>
+      <nav>
+        <a href="#plannen">Afspraak plannen</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="plannen">
+        <div>
+          <p class="eyebrow">Kennismakingsgesprek</p>
+          <h1>Plan een kennismaking met Slinnva Professionals</h1>
+          <p>Kies de datum en tijd die u het beste uitkomt en zodra u de bevestigingsmail heeft ontvangen staat de afspraak definitief vast.</p>
+        </div>
+      </section>
+
+      <section class="planner">
+        <form id="bookingForm" class="panel">
+          <h2>Afspraak aanvragen</h2>
+          <label class="duration-control">Duur
+            <select name="duration" id="durationSelect">
+              <option value="45">45 minuten</option>
+              <option value="60">60 minuten</option>
+            </select>
+          </label>
+          <div class="calendar-wrap">
+            <div class="calendar-card">
+              <div class="calendar-head">
+                <button class="button ghost" id="prevMonth" type="button">Vorige</button>
+                <h3 id="calendarTitle">Maand</h3>
+                <button class="button ghost" id="nextMonth" type="button">Volgende</button>
+              </div>
+              <div class="calendar-weekdays">
+                <span>Ma</span><span>Di</span><span>Wo</span><span>Do</span><span>Vr</span><span>Za</span><span>Zo</span>
+              </div>
+              <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+            <div class="time-card">
+              <div class="slot-head">
+                <h3>Beschikbare tijden</h3>
+                <span id="slotSummary">Kies eerst een datum</span>
+              </div>
+              <div class="slot-list" id="slotList"></div>
+            </div>
+          </div>
+          <div class="booking-details" id="bookingDetails" hidden>
+            <h3>Uw gegevens</h3>
+            <div class="form-grid">
+            <label>Naam<input name="name" required autocomplete="name"></label>
+            <label>Organisatie<input name="organization" autocomplete="organization"></label>
+            <label>E-mailadres<input name="email" type="email" required autocomplete="email"></label>
+            <label>Telefoonnummer<input name="phone" type="tel" autocomplete="tel"></label>
+            <label>Vorm kennismaking
+              <select name="meetingType" required>
+                <option>Videobellen</option>
+                <option>Telefonisch</option>
+                <option>Op locatie</option>
+              </select>
+            </label>
+            <label class="full">Opmerking<textarea name="note" rows="3" placeholder="Bijvoorbeeld doelgroep, locatie of voorkeursdagen"></textarea></label>
+            </div>
+            <button class="button primary" type="submit">Kennismaking aanvragen</button>
+          </div>
+          <input type="hidden" name="start" id="selectedStart" required>
+          <p class="status" id="bookingStatus"></p>
+        </form>
+      </section>
+
+    </main>
+
+    <script src="agenda.js"></script>
+  </body>
+</html>

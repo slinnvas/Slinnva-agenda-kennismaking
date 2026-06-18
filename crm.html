@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#201711">
+    <title>Samen Actief & Verbonden CRM</title>
+    <link rel="stylesheet" href="crm.css?v=1">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <button class="brand" data-route="dashboard" aria-label="Dashboard openen">
+          <span class="brand-mark">SP</span>
+          <span><strong>Slinnva Professionals</strong><small>Samen Actief & Verbonden</small></span>
+        </button>
+        <nav class="menu" aria-label="Hoofdmenu" id="mainMenu"></nav>
+        <div class="sidebar-footer">
+          <span class="save-dot"></span>
+          <span>Automatisch opgeslagen</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button class="menu-toggle" id="menuToggle" aria-label="Menu openen">Menu</button>
+          <label class="global-search">
+            <span>Zoeken</span>
+            <input id="globalSearch" type="search" placeholder="Zoek organisatie, contactpersoon, plaats, e-mail, workshop of notities">
+          </label>
+          <button class="btn primary" id="quickAdd">Organisatie toevoegen</button>
+        </header>
+
+        <section class="page active" id="page-dashboard"></section>
+        <section class="page" id="page-organisaties"></section>
+        <section class="page" id="page-pipeline"></section>
+        <section class="page" id="page-opvolging"></section>
+        <section class="page" id="page-gesprekken"></section>
+        <section class="page" id="page-offertes"></section>
+        <section class="page" id="page-templates"></section>
+        <section class="page" id="page-statistieken"></section>
+        <section class="page" id="page-notities"></section>
+        <section class="page" id="page-instellingen"></section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="orgModal">
+      <form method="dialog" class="modal-panel" id="orgForm">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Organisatie</p>
+            <h2 id="orgModalTitle">Organisatie toevoegen</h2>
+          </div>
+          <button class="icon-btn" type="button" data-close-modal="orgModal" aria-label="Sluiten">×</button>
+        </div>
+        <div class="form-grid">
+          <label>Organisatie<input name="name" required></label>
+          <label>Type organisatie<select name="type"></select></label>
+          <label>Adres<input name="address"></label>
+          <label>Plaats<input name="city"></label>
+          <label>Contactpersoon<input name="contactName"></label>
+          <label>Functie contactpersoon<input name="contactRole"></label>
+          <label>E-mailadres<input name="email" type="email"></label>
+          <label>Telefoonnummer<input name="phone"></label>
+          <label>Website<input name="website" type="url"></label>
+          <label>Workshop of traject<select name="workshop"></select></label>
+          <label>Status<select name="status"></select></label>
+          <label>Laatste contact<input name="lastContact" type="date"></label>
+          <label>Volgende actie<select name="nextAction"></select></label>
+          <label>Datum opvolging<input name="followUpDate" type="date"></label>
+          <label class="wide">Notities<textarea name="notes" rows="4"></textarea></label>
+        </div>
+        <div class="modal-actions">
+          <button class="btn ghost" type="button" id="deleteOrg">Verwijderen</button>
+          <span></span>
+          <button class="btn secondary" value="cancel">Annuleren</button>
+          <button class="btn primary" type="submit">Opslaan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="detailModal">
+      <div class="modal-panel detail-panel">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow">Detailpagina</p>
+            <h2 id="detailTitle">Organisatie</h2>
+          </div>
+          <button class="icon-btn" id="closeDetail" aria-label="Sluiten">×</button>
+        </div>
+        <div id="detailContent"></div>
+      </div>
+    </dialog>
+
+    <dialog class="modal" id="simpleModal">
+      <form method="dialog" class="modal-panel" id="simpleForm">
+        <div class="modal-head">
+          <div>
+            <p class="eyebrow" id="simpleEyebrow">Nieuw</p>
+            <h2 id="simpleTitle">Toevoegen</h2>
+          </div>
+          <button class="icon-btn" type="button" data-close-modal="simpleModal" aria-label="Sluiten">×</button>
+        </div>
+        <div class="form-grid" id="simpleFields"></div>
+        <div class="modal-actions">
+          <span></span><span></span>
+          <button class="btn secondary" value="cancel">Annuleren</button>
+          <button class="btn primary" type="submit">Opslaan</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="crm.js?v=1"></script>
+  </body>
+</html>
